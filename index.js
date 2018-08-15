@@ -4,19 +4,21 @@ function produceDrivingRange(blockRange){
         let numStart = parseInt(start.slice(0,2));
         let numEnd = parseInt(end.slice(0,2));
         let absDistance = Math.abs(numEnd - numStart);
-        if (absDistance < blockRange){
-            return `within range by ${blockRange - absDistance}`
+        // before you were repeating the difference math
+        let difference = blockRange - absDistance
+        if (difference > 0){
+            return `within range by ${Math.abs(difference)}`
         }
         else {
-            return `${absDistance - blockRange} blocks out of range`
+            return `${Math.abs(difference)} blocks out of range`
         }
     }
 }
 
 
-function produceTipCalculator(tip){
+function produceTipCalculator(tipPercentage){
     return function(total){
-        return tip * total
+        return tipPercentage * total
     }
 }
 
